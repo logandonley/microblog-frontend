@@ -60,7 +60,8 @@ export default {
       posts: [],
       users: [],
       errors: [],
-      show_sidebar: Flags.sidebar.isEnabled()
+      show_sidebar: Flags.sidebar.isEnabled(),
+      show_title: Flags.title.isEnabled()
     }
   },
   created () {
