@@ -8,8 +8,11 @@ pipeline {
     //timeout(time: 30, unit: 'MINUTES')
   }
   environment {
-    repoOwner = "${repoOwner}"
-    credId = "${githubCredentialId}"
+    repoOwner = "gregavsyuk"
+    repository = "microblog-frontend"
+    credId = "microfrontend-git"
+    registry = "docker.cb-demos.io"
+    gcpProject = "cb-days-workshop"
   }
   stages('VueJS Deploy')
   {
@@ -23,7 +26,7 @@ pipeline {
       // }
       steps {
         //input(message: "Should we deploy?", ok: "Deploy", submitterParameter: "APPROVER")
-        blogKubeDeploy("${repository}", "${repoOwner}", "gcr.io/${gcpProject}/vuejs-app", "${deploymentDomain}") {
+        blogKubeDeploy("${repository}", "${repoOwner}", "gcr.io/${gcpProject}/vuejs-app", "cbws.io") {
           unstash "k8s-deploy"
         }
       }
