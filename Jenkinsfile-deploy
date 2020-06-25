@@ -17,9 +17,6 @@ pipeline {
   stages('VueJS Deploy')
   {
     stage('Deploy'){
-      when {
-        anyOf { branch 'master'; branch 'development' }
-      }
       // options {
       //   timeout(time: 90, unit: 'SECONDS') 
       // }
