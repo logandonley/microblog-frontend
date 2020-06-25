@@ -9,8 +9,10 @@ pipeline {
   }
   environment {
     repoOwner = "gregavsyuk"
+    repository = "microblog-frontend"
     credId = "microfrontend-git"
     registry = "docker.cb-demos.io"
+    gcpProject = "cb-days-workshop"
   }
   stages('VueJS Test and Build')
   {
@@ -34,14 +36,15 @@ pipeline {
     stage('Build and Push Image') {
       when {
         beforeAgent true
-        branch 'master'
+        anyOf { branch 'master'; branch 'development' }
       }
       steps { 
-        imgBuildNexus("microblog-frontend", "${repoOwner}", "${registry}")
-        {
+        containerBuildPushGeneric("vuejs-app/${repoOwner}/${repository}", "latest", "${gcpProject}") {
           checkout scm
+          gitShortCommit()
+          stash name: "k8s-deploy", includes: ".kubernetes/**"
         }
       }
-    } 
+    }
   }
 }
