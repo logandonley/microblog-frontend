@@ -1,0 +1,32 @@
+@Library('cb-days@master') _
+pipeline {
+  agent none
+  options { 
+    buildDiscarder(logRotator(numToKeepStr: '2'))
+    skipDefaultCheckout true
+    preserveStashes(buildCount: 2)
+    //timeout(time: 30, unit: 'MINUTES')
+  }
+  environment {
+    repoOwner = "${repoOwner}"
+    credId = "${githubCredentialId}"
+  }
+  stages('VueJS Deploy')
+  {
+    stage('Deploy'){
+      when {
+        beforeAgent true
+        anyOf { branch 'master'; branch 'development' }
+      }
+      // options {
+      //   timeout(time: 90, unit: 'SECONDS') 
+      // }
+      steps {
+        //input(message: "Should we deploy?", ok: "Deploy", submitterParameter: "APPROVER")
+        blogKubeDeploy("${repository}", "${repoOwner}", "gcr.io/${gcpProject}/vuejs-app", "${deploymentDomain}") {
+          unstash "k8s-deploy"
+        }
+      }
+    }  
+  }
+}
