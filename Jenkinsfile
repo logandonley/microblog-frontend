@@ -3,7 +3,6 @@ def testPodYaml = libraryResource 'podtemplates/vuejs/vuejs-test-pod.yml'
 pipeline {
   agent none
   options { 
-    buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
     preserveStashes(buildCount: 2)
   }
