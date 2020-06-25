@@ -23,7 +23,7 @@ pipeline {
       steps {
         //input(message: "Should we deploy?", ok: "Deploy", submitterParameter: "APPROVER")
         blogKubeDeploy("${repository}", "${repoOwner}", "gcr.io/${gcpProject}/vuejs-app", "cbws.io", "${deployEnv}") {
-          unstash "k8s-deploy"
+          checkout scm
         }
       }
     }  
