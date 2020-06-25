@@ -8,8 +8,9 @@ pipeline {
     preserveStashes(buildCount: 2)
   }
   environment {
-    repoOwner = "${repoOwner}"
-    credId = "${githubCredentialId}"
+    repoOwner = "gregavsyuk"
+    credId = "microfrontend-git"
+    registry = "docker.cb-demos.io"
   }
   stages('VueJS Test and Build')
   {
