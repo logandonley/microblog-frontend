@@ -39,7 +39,7 @@ pipeline {
         anyOf { branch 'master'; branch 'development' }
       }
       steps { 
-        containerBuildPushGeneric("vuejs-app/${repoOwner}/${repository}", "latest", "${gcpProject}") {
+        kanikoBuildPushGeneric("vuejs-app/${repoOwner}/${repository}", "latest", "${gcpProject}") {
           checkout scm
           gitShortCommit()
           stash name: "k8s-deploy", includes: ".kubernetes/**"
