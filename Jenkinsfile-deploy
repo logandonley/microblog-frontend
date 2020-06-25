@@ -18,7 +18,6 @@ pipeline {
   {
     stage('Deploy'){
       when {
-        beforeAgent true
         anyOf { branch 'master'; branch 'development' }
       }
       // options {
