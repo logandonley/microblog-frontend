@@ -22,7 +22,7 @@ pipeline {
       // }
       steps {
         //input(message: "Should we deploy?", ok: "Deploy", submitterParameter: "APPROVER")
-        blogKubeDeploy("${repository}", "${repoOwner}", "gcr.io/${gcpProject}/vuejs-app", "cbws.io", "${deployEnv}") {
+        blogKubeDeploy("${repository}", "${repoOwner}", "gcr.io/${gcpProject}/vuejs-app", "loanlogics.cbws.io", "${deployEnv}") {
           checkout scm
         }
       }
