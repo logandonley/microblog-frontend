@@ -53,7 +53,7 @@ pipeline {
       steps{
         script {
           node {
-            cloudBeesFlowTriggerRelease configuration: 'LL-CD', projectName: 'Default', parameters: '{"release": {"releaseName": "Greg_test", "stages":[{"stageName":"Readiness","stageValue":false}], "parameters":[{"parameterName":"branchName","parameterValue":"master"}]}}', releaseName: 'Greg_test', startingStage: 'Readiness'
+            cloudBeesFlowTriggerRelease configuration: 'LL-CD', projectName: 'Default', parameters: '{"release": {"releaseName": "sandbox_template", "stages":[{"stageName":"Readiness","stageValue":false}], "parameters":[{"parameterName":"branchName","parameterValue":"master"}]}}', releaseName: 'sandbox_template', startingStage: 'Readiness'
           }
         }      
       }
