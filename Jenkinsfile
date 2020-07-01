@@ -51,7 +51,6 @@ pipeline {
         anyOf { branch 'master'; branch 'development' }
       }
       steps{
-        build job: 'free-test', parameters: [[$class: 'StringParameterValue', name: 'branchName', value: env.BRANCH_NAME]]
         //cloudBeesFlowTriggerRelease configuration: 'LL-CD', projectName: 'Default', releaseName: 'Greg_test', startingStage: 'Readiness'
       }
     }
