@@ -45,5 +45,14 @@ pipeline {
         }
       }
     }
+    stage('Trigger CD') {
+      when{
+        beforeAgent true
+        anyOf { branch 'master'; branch 'development' }
+      }
+      steps{
+        cloudBeesFlowTriggerRelease configuration: 'LL-CD', projectName: 'Default', releaseName: 'Greg_test', startingStage: 'Readiness'
+      }
+    }
   }
 }
