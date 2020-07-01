@@ -51,7 +51,11 @@ pipeline {
         anyOf { branch 'master'; branch 'development' }
       }
       steps{
-        //cloudBeesFlowTriggerRelease configuration: 'LL-CD', projectName: 'Default', releaseName: 'Greg_test', startingStage: 'Readiness'
+        script {
+          node {
+            cloudBeesFlowTriggerRelease configuration: 'LL-CD', projectName: 'Default', parameters: '{"release": {"releaseName": "Greg_test", "stages":[{"stageName":"Readiness","stageValue":false}], "parameters":[{"parameterName":"branchName","parameterValue":"master"}]}}', releaseName: 'Greg_test', startingStage: 'Readiness'
+          }
+        }      
       }
     }
   }
