@@ -38,7 +38,6 @@
 import { mapGetters } from 'vuex'
 import { isLoggedIn } from '../utils/users'
 
-
 export default {
   name: 'home',
   data () {
