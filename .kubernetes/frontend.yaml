@@ -6,6 +6,7 @@ metadata:
   labels:
     app: "microblog-frontend-REPLACE_REPO_OWNER"
     app.type: "workshop"
+    tenant: "teams-REPLACE_REPO_OWNER"
 spec:
   replicas: 1
   selector:
@@ -16,6 +17,7 @@ spec:
       labels:
         app: "microblog-frontend-REPLACE_REPO_OWNER"
         app.type: "workshop"
+        tenant: "teams-REPLACE_REPO_OWNER"
     spec:
       containers:
       - name: "microblog-frontend"
@@ -32,6 +34,7 @@ metadata:
   labels:
     app: "microblog-frontend-REPLACE_REPO_OWNER"
     app.type: "workshop"
+    tenant: "teams-REPLACE_REPO_OWNER"
 spec:
   ports:
   - protocol: "TCP"
@@ -50,6 +53,7 @@ metadata:
   labels:
     app: "microblog-frontend-REPLACE_REPO_OWNER"
     app.type: "workshop"
+    tenant: "teams-REPLACE_REPO_OWNER"
 spec:
   rules:
   - host: REPLACE_HOSTNAME
