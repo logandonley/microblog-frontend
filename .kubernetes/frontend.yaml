@@ -25,7 +25,7 @@ spec:
         imagePullPolicy: Always
         env:
           - name: VUE_APP_BASE_API_URL
-            value: http://staging.microblog-backend.v1.k8s.tel 
+            value: http://development.microblog-backend.v1.k8s.tel 
 ---
 apiVersion: "v1"
 kind: "Service"
