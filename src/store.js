@@ -38,6 +38,7 @@ export default new Vuex.Store({
       if (matchedUser !== null) {
         localStorage.setItem('user', matchedUser.username)
         localStorage.setItem('token', 'true')
+        dispatch('grabUser')
         commit(LOGIN_SUCCESS)
       } else {
         axios.post(`${process.env.VUE_APP_BASE_API_URL}/api/token/`, creds,
@@ -76,20 +77,9 @@ export default new Vuex.Store({
       commit(LOGOUT)
     },
     grabUser ({ commit }) {
-      axios.get(`${process.env.VUE_APP_BASE_API_URL}/users/me/`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-        .then(resp => {
-          this.state.user = { ...resp.data[0] }
-        })
-        .catch(e => {
-          this.state.user = {
-            username: localStorage.getItem('user')
-          }
-          console.log(`error: ${e}`)
-        })
+      this.state.user = {
+        username: localStorage.getItem('user')
+      }
     }
   },
 
