@@ -7,5 +7,7 @@ spec:
   url: https://github.com/REPLACE_GITHUB_ORG/microblog-frontend.git
   apiTokenSecretRef:
     name: beedemo-dev-github-token
+  autoCreateContexts:                           
+  - default 
   autoUpdateContexts:                           
   - default
