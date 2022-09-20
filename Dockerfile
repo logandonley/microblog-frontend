@@ -1,10 +1,8 @@
-# production stage
-FROM us-east1-docker.pkg.dev/core-workshop/workshop-registry/node:17-alpine as BUILDER
+FROM gmolaire/yarn:1.22.4_12.18.3-alpine3.12 as BUILDER
 WORKDIR /app
-COPY package.json yarn.lock /app/
-RUN yarn install
 COPY . .
-RUN yarn run build:dev
+RUN yarn install && \
+    yarn run build:dev
 
 FROM us-east1-docker.pkg.dev/core-workshop/workshop-registry/nginx:1.20.1
 COPY --from=BUILDER /app/dist /usr/share/nginx/html
