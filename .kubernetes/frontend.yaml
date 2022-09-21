@@ -2,48 +2,58 @@
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "microblog-frontend"
+  name: "microblog-frontend-REPLACE_REPO_OWNER"
   labels:
-    app: "microblog-frontend"
+    app: "microblog-frontend-REPLACE_REPO_OWNER"
+    app.type: "workshop"
+    tenant: "teams-REPLACE_REPO_OWNER"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "microblog-frontend"
+      app: "microblog-frontend-REPLACE_REPO_OWNER"
   template:
     metadata:
       labels:
-        app: "microblog-frontend"
+        app: "microblog-frontend-REPLACE_REPO_OWNER"
+        app.type: "workshop"
+        tenant: "teams-REPLACE_REPO_OWNER"
     spec:
       containers:
       - name: "microblog-frontend"
         image: REPLACE_IMAGE
+        imagePullPolicy: Always
         env:
           - name: VUE_APP_BASE_API_URL
-            value: microblog-backend-service
+            value: http://development.microblog-backend.v1.k8s.tel 
 ---
 apiVersion: "v1"
 kind: "Service"
 metadata:
-  name: "microblog-frontend-service"
-  namespace: "default"
+  name: "microblog-frontend-REPLACE_REPO_OWNER"
   labels:
-    app: "microblog-frontend"
+    app: "microblog-frontend-REPLACE_REPO_OWNER"
+    app.type: "workshop"
+    tenant: "teams-REPLACE_REPO_OWNER"
 spec:
   ports:
   - protocol: "TCP"
     port: 80
     targetPort: 80
   selector:
-    app: "microblog-frontend"
+    app: "microblog-frontend-REPLACE_REPO_OWNER"
   type: "ClusterIP"
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress-frontend
+  name: "ingress-frontend-REPLACE_REPO_OWNER"
   annotations:
     kubernetes.io/ingress.class: "nginx"
+  labels:
+    app: "microblog-frontend-REPLACE_REPO_OWNER"
+    app.type: "workshop"
+    tenant: "teams-REPLACE_REPO_OWNER"
 spec:
   rules:
   - host: REPLACE_HOSTNAME
@@ -51,5 +61,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: microblog-frontend-service
+          serviceName: "microblog-frontend-REPLACE_REPO_OWNER"
           servicePort: 80

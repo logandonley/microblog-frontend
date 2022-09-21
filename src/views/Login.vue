@@ -25,6 +25,9 @@
             <a class="button is-light" href="/signup">Sign up</a>
           </div>
         </div>
+        <p><small><a @click="() => {username='normaluser'; password='normaluser'}">Normal user: normaluser/normaluser</a></small></p>
+        <p><small><a @click="() => {username='betauser'; password='betauser'}">Beta user: betauser/betauser</a></small></p>
+        <p><small><a @click="() => {username='admin'; password='admin'}">Admin user: admin/admin</a></small></p>
       </form>
     </div>
   </div>
@@ -32,6 +35,8 @@
 
 <script>
 // @ is an alias to /src
+import { mapGetters } from 'vuex'
+import { isLoggedIn } from '../utils/users'
 
 export default {
   name: 'home',
@@ -41,13 +46,20 @@ export default {
       password: ''
     }
   },
+  computed: {
+    ...mapGetters([
+      'isLoggedIn'
+    ])
+  },
   methods: {
     login () {
       this.$store.dispatch('login', {
         username: this.username,
         password: this.password
       }).then(() => {
-        this.$router.push('/')
+        if (isLoggedIn()) {
+          this.$router.push('/')
+        }
       })
     }
   }

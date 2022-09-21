@@ -39,7 +39,6 @@ export default {
     }
   },
   created () {
-    this.getPosts()
   },
   computed: {
     ...mapGetters([

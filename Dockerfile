@@ -1,13 +1,14 @@
-FROM node:lts-alpine as build-stage
+FROM gmolaire/yarn:1.22.4_12.18.3-alpine3.12 as BUILDER
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install
 COPY . .
-RUN yarn run build
+RUN yarn install && \
+    yarn run build:dev
 
-# production stage
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+FROM us-east1-docker.pkg.dev/core-workshop/workshop-registry/nginx:1.20.1
+COPY --from=BUILDER /app/dist /usr/share/nginx/html
+COPY .env /usr/share/nginx/html
+COPY .env.production /usr/share/nginx/html
+COPY .env.development /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
 EXPOSE 80
