@@ -11,8 +11,17 @@
     "lint": "vue-cli-service lint --fix"
   },
   "dependencies": {
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "@vue/babel-preset-app": "^5.0.8",
+    "autoprefixer": "^9.0.0",
     "axios": "^0.21.2",
+    "babel-loader": "^8.2.5",
+    "babel-preset-env": "^1.7.0",
+    "cache-loader": "^4.1.0",
     "core-js": "^2.6.5",
+    "eslint-loader": "^4.0.2",
+    "postcss": "^8.4.16",
     "register-service-worker": "^1.6.2",
     "uuid": "^3.3.3",
     "vue": "^2.6.10",
@@ -72,5 +81,10 @@
     "outputDirectory": "output/coverage/junit/",
     "outputName": "junit.xml",
     "usePathForSuiteName": "true"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ]
 }
