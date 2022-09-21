@@ -1,5 +1,8 @@
 {
   "name": "microblog-frontend",
+<<<<<<< HEAD
+  "packageManager": "yarn@3.2.3"
+=======
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -72,4 +75,5 @@
     "outputName": "junit.xml",
     "usePathForSuiteName": "true"
   }
+>>>>>>> 448f1c54e12b5f4dfda0694b776137c261f801fa
 }
